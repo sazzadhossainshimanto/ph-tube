@@ -18,6 +18,11 @@
 //         },
 //         "description": "'Midnight Serenade' by Noah Walker is a soulful journey into the depths of the night, capturing the mystique and allure of a moonlit evening. With 543K views, this song brings together tender melodies and evocative lyrics, making it a favorite among listeners seeking a contemplative yet uplifting experience. Immerse yourself in this musical masterpiece and feel the calm embrace of the night."
 // }
+
+// {
+//         "category_id": "1001",
+//                 "category": "Music"
+// }
 function loadCatagoried(){
         fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
         .then(res => res.json())
@@ -30,8 +35,19 @@ function loadVideo (){
                 
         )
 }
+
+const loadCatagory = (id) =>{
+        const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
+
+
+        fetch(url)
+        .then(res => res.json())
+                .then(data => displayVideo(data.category))
+        
+}
 const displayVideo = (videos)=>{
         const videoContianer = document.getElementById('videoContaier');
+        videoContianer.innerHTML=""
         videos.forEach((video) => {
                 const videoCard = document.createElement("div");
                 videoCard.innerHTML = ` <div class="card bg-base-100 w-96 shadow-sm">
@@ -66,7 +82,7 @@ function displayCatagory (catagory){
         for (const cat of catagory) {
                 const div = document.createElement("div");
                 div.innerHTML = `
-                <button class="btn btn-sm hover:bg-red-600 rounded-lg  hover:text-white">${cat.category}</button>
+                <button onclick="loadCatagory(${cat.category_id})" class="btn btn-sm hover:bg-red-600 rounded-lg  hover:text-white">${cat.category}</button>
                 `
                 catagoryContainer.appendChild(div)
                 
@@ -74,4 +90,3 @@ function displayCatagory (catagory){
         
 }
 loadCatagoried()
-loadVideo()  
