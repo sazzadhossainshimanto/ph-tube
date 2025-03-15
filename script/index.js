@@ -34,20 +34,29 @@ const displayVideo = (videos)=>{
         const videoContianer = document.getElementById('videoContaier');
         videos.forEach((video) => {
                 const videoCard = document.createElement("div");
-                videoCard.innerHTML = `<div class="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src="${video.thumbnail}"
-      alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">${video.title}</h2>
-    <p></p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>`
+                videoCard.innerHTML = ` <div class="card bg-base-100 w-96 shadow-sm">
+                        <figure class="relative">
+                                <img class="w-96 h-56 "  src="${video.thumbnail}" alt="Shoes" />
+                                <span class="absolute bottom-2 right-3 bg-[#171717] text[10px] font-normal text-white p-1 rounded">3hrs 56 min ago</span>
+                        </figure>
+                        <div class=" flex gap-3 py-5 px-4">
+                                <div class="profile ">
+                                        <div class="avatar">
+                                                <div class="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                                                        <img src="${video.authors[0].profile_picture}" />
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="intro">
+                                        <div class="intro">
+                                                <h2 class="text-black text-lg font-bold">Kid Gorgeous</h2>
+                                                <p class="flex gap-1 "><span class=" text[#17171770] font-normal">${video.authors[0].profile_name}</span> <img class="w-6" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt=""></p>
+                                                <p class="text-sm text[#17171770] font-normal">${video.others.views}</p>
+                                         </div>
+                                </div>
+                        </div>
+                </div>
+`
                 videoContianer.appendChild(videoCard)
         });
 }
